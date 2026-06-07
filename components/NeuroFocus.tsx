@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const FREE_LIMIT = 3;
 const KIWIFY_MONTHLY = "https://pay.kiwify.com.br/IGdJV4B";
 const KIWIFY_LIFETIME = "https://pay.kiwify.com.br/TKa1kIO";
-const MODEL = "claude-sonnet-4-20250514";
+const MODEL = "claude-opus-4-5";
 
 const SYSTEM = `Você é Neura, tutora de IA do NeuroFocus — especialista em aprendizagem acelerada para estudantes brasileiros.
 
