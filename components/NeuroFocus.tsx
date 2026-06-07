@@ -446,7 +446,7 @@ function FocusTab() {
   );
 }
 
-export default function NeuroFocus() {
+export default function NeuroFocus({ userId, userEmail }: { userId?: string, userEmail?: string }) {
   const [tab,setTab]=useState("chat"); const [uses,setUses]=useState(0);
   const [isPro,setIsPro]=useState(false); const [showPW,setShowPW]=useState(false);
   useEffect(()=>{if(!isPro&&uses>=FREE_LIMIT)setShowPW(true);},[uses,isPro]);
@@ -467,6 +467,7 @@ export default function NeuroFocus() {
     </>
   );
 }
+
 
 
 
