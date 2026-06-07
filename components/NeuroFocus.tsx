@@ -48,7 +48,7 @@ function useVoice(onResult: (text: string) => void) {
     recRef.current.lang = "pt-BR";
     recRef.current.continuous = false;
     recRef.current.interimResults = false;
-    recRef.current.onresult = (e: any) => { onResult(e.results[0][0].transcript); setListening(false); };
+    recRef.current.onresult = (e: any) => { const text = e.results[0][0].transcript; onResult(text); setListening(false); };
     recRef.current.onerror = () => setListening(false);
     recRef.current.onend = () => setListening(false);
   }, [supported, onResult]);
@@ -467,6 +467,7 @@ export default function NeuroFocus() {
     </>
   );
 }
+
 
 
 
