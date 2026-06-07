@@ -25,7 +25,6 @@ Regra absoluta: cada resposta deve ter valor real. Nunca seja genérica.`;
 
 async function callClaude(messages: {role: string, content: any}[], maxTokens = 1000) {
   const res = await fetch("/api/claude", { method: "POST",
-    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ model: MODEL, max_tokens: maxTokens, system: SYSTEM, messages }),
   });
@@ -474,3 +473,4 @@ export default function NeuroFocus() {
     </>
   );
 }
+
