@@ -1,4 +1,4 @@
-import dynamic from "next/dynamic"; const NeuroFocus = dynamic(() => import("../components/NeuroFocus"), { ssr: false });
+import NeuroFocus from "../components/NeuroFocus";
 
 export default function Home() {
   return <NeuroFocus />;
