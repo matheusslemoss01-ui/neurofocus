@@ -45,7 +45,7 @@ async function fileToBase64(file: File): Promise<string> {
 function useVoice(onResult: (text: string) => void) {
   const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState(false);
-  const [supported] = useState(() => typeof window !== 'undefined' && !!(window.SpeechRecognition || (window as any).webkitSpeechRecognition));
+  const [supported] = useState(() => typeof window !== 'undefined' && !!(('SpeechRecognition' in window) || ('webkitSpeechRecognition' in window)));
   const recRef = useRef<any>(null);
 
   useEffect(() => {
