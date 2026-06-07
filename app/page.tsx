@@ -1,4 +1,5 @@
-import NeuroFocus from "../components/NeuroFocus";
+'use client'
+import NeuroFocus from '../components/NeuroFocus';
 
 export default function Home() {
   return <NeuroFocus />;
