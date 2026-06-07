@@ -1,4 +1,5 @@
 'use client'
+import ReactMarkdown from 'react-markdown';
 import { useState, useEffect, useRef, useCallback } from "react";
 
 const FREE_LIMIT = 3;
@@ -466,5 +467,6 @@ export default function NeuroFocus() {
     </>
   );
 }
+
 
 
