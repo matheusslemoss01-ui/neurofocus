@@ -323,7 +323,7 @@ function ChatTab({ uses, setUses, isPro, setShowPW }: any) {
     <div className="chat-wrap">
       {!isPro && (<div className="uses-bar"><div className="pips">{[...Array(FREE_LIMIT)].map((_, i) => <div key={i} className={`pip ${i < uses ? "used" : ""}`} />)}</div><span>{uses} de {FREE_LIMIT} conversas gratuitas</span><button className="uses-link" onClick={() => setShowPW(true)}>Acesso ilimitado →</button></div>)}
       <div className="chat-log">
-        {msgs.map((m: any, i: number) => (<div key={i} className={`msg ${m.role}`}><div className="av">{m.role === "assistant" ? "✦" : "↑"}</div><div className="bbl">{m.content}</div></div>))}
+        {msgs.map((m: any, i: number) => (<div key={i} className={`msg ${m.role}`}><div className="av">{m.role === "assistant" ? "✦" : "↑"}</div><div className="bbl"><ReactMarkdown>{m.content}</ReactMarkdown></div></div>))}
         {loading && <div className="msg"><div className="av">✦</div><div className="bbl"><div className="typing-b"><div className="dot"/><div className="dot"/><div className="dot"/></div></div></div>}
         <div ref={bottomRef} />
       </div>
@@ -467,6 +467,7 @@ export default function NeuroFocus() {
     </>
   );
 }
+
 
 
 
