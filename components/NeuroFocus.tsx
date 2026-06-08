@@ -451,7 +451,7 @@ export default function NeuroFocus({ userId, userEmail }: { userId?: string, use
   const [isPro,setIsPro]=useState(false); const [showPW,setShowPW]=useState(false);
   useEffect(()=>{if(!isPro&&uses>=FREE_LIMIT)setShowPW(true);},[uses,isPro]);
   const TABS=[{k:"chat",l:"Neura IA"},{k:"pdf",l:"PDF & Imagem"},{k:"quiz",l:"Quiz"},{k:"focus",l:"Focus Mode"}];
-  const shared={uses,setUses,isPro,setShowPW};
+  const shared={uses,setUses,isPro,setShowPW,userId};
   return (
     <>
       <style>{css}</style>
@@ -467,6 +467,7 @@ export default function NeuroFocus({ userId, userEmail }: { userId?: string, use
     </>
   );
 }
+
 
 
 
