@@ -303,7 +303,7 @@ function ChatTab({ uses, setUses, isPro, setShowPW }: any) {
     const userMsg = { role: "user", content: content || "Analise este material." };
     setMsgs(prev => [...prev, userMsg]);
     setInput(""); setLoading(true);
-    if (!isPro) setUses((u: number) => u + 1);
+    if (!isPro) { setUses((u: number) => u + 1); if (userId) fetch("/api/uses", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ userId }) }); }
     try {
       let apiMsgs: any[];
       if (file) {
@@ -350,7 +350,7 @@ function PDFTab({ uses, setUses, isPro, setShowPW }: any) {
   const process = async (file: File, actionKey: string) => {
     if (!file) return;
     if (!isPro && uses >= FREE_LIMIT) { setShowPW(true); return; }
-    setLoading(true); setResult(""); if (!isPro) setUses((u: number) => u + 1);
+    setLoading(true); setResult(""); if (!isPro) { setUses((u: number) => u + 1); if (userId) fetch("/api/uses", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ userId }) }); }
     try {
       const b64 = await fileToBase64(file); const isPDF = file.type === "application/pdf";
       const content = isPDF ? [{ type:"document",source:{type:"base64",media_type:"application/pdf",data:b64}},{type:"text",text:PROMPTS[actionKey]}] : [{type:"image",source:{type:"base64",media_type:file.type,data:b64}},{type:"text",text:PROMPTS[actionKey]}];
@@ -388,7 +388,7 @@ function QuizTab({ uses, setUses, isPro, setShowPW }: any) {
   const generate = async () => {
     if (!topic.trim()) return;
     if (!isPro && uses >= FREE_LIMIT) { setShowPW(true); return; }
-    setLoading(true); setQs([]); setAns({}); setScore(null); setElapsed(0); if (!isPro) setUses((u: number) => u + 1);
+    setLoading(true); setQs([]); setAns({}); setScore(null); setElapsed(0); if (!isPro) { setUses((u: number) => u + 1); if (userId) fetch("/api/uses", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({ userId }) }); }
     try {
       const res = await callClaude([{role:"user",content:`Crie exatamente 5 questões de múltipla escolha de nível ${level} sobre: "${topic}". Retorne APENAS JSON sem texto extra:\n[{"q":"pergunta","options":["A) op1","B) op2","C) op3","D) op4"],"correct":0}]`}]);
       setQs(JSON.parse(res.replace(/\`\`\`json|\`\`\`/g,"").trim())); setStartTime(Date.now());
@@ -467,6 +467,7 @@ export default function NeuroFocus({ userId, userEmail }: { userId?: string, use
     </>
   );
 }
+
 
 
 
